@@ -155,20 +155,6 @@ plt.xlabel("Date")
 plt.ylabel("Count of Negative Quantities")
 plt.show()
 
-# ===============================
-# Summary of Negative Quantity Over Time Figure
-# ===============================
-
-# - Overall Trend: Negative quantity transactions occur throughout the year
-#   but are concentrated on specific days.
-# - Spikes: Certain days have significant peaks, likely caused by returns,
-#   invoice cancellations, or bulk adjustments.
-# - Flat Periods: Many days show very few or no negative transactions,
-#   representing normal operations.
-# - Pattern Insight: Negatives are not evenly distributed; they tend to
-#   cluster around specific events or customers/products.
-# - Business Implication: Negative quantities are episodic rather than
-#   constant, helping focus analysis on high-impact days and transactions.
 
 
 
@@ -233,25 +219,7 @@ plt.ylabel("Number of Returns")
 plt.show()
 
 
-# ===============================
-# 15. Storytelling and Business Insights
-# ===============================
 
-# Summary Insights (can be added as comments or markdown in VS Code)
-
-# - A total of 8,872 transactions have negative quantities, indicating returns.
-# - Returns are concentrated among a few customers:
-#     - Top customer (ID 14911) alone accounts for 226 returns.
-#     - A small group of customers is responsible for most negative transactions.
-# - Certain products are returned more frequently:
-#     - StockCode 22423 has the highest number of returns (180).
-#     - Some stock codes like 'M', 'D', or 'POST' may represent discounts or adjustments.
-# - Returns are episodic, not evenly distributed over time:
-#     - Spikes likely correspond to promotions, holiday periods, or bulk returns.
-# - Business Implications:
-#     - Focus on high-return customers for targeted retention or feedback.
-#     - Review frequently returned products for quality issues or packaging.
-#     - Monitor periods with spikes to identify operational or promotional issues.
 
 
 #solving the issue
