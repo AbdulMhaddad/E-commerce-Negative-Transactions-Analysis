@@ -16,6 +16,7 @@ duplicates = df[df.duplicated()]
 print("Duplicate Rows in the dataset")
 print(duplicates)
 
+###Understanding the Dataset
 
 df.head() → Preview first 5 rows to get a feel for the data.
 
@@ -29,4 +30,62 @@ df.isnull().sum() → Identify missing values in each column.
 
 df.duplicated() → Check for duplicate rows that may distort analysis.
 
-Heading (### 📊 Step X)
+
+#Here is the result of the dataset, and we can do EDA and cleaning if needed.
+
+
+🧾 Dataset size: 541,909 rows × 8 columns.
+
+📑 Columns: InvoiceNo, StockCode, Description, Quantity, InvoiceDate, UnitPrice, CustomerID, Country.
+
+📉 Missing values:
+
+Description → 1,454 missing entries.
+
+CustomerID → 135,080 missing entries (about 25% of the dataset).
+
+🌀 Duplicates: 5,268 duplicate rows found.
+
+⚠️ Anomalies in values:
+
+Quantity ranges from -80,995 to +80,995 → negative values likely represent returns.
+
+UnitPrice ranges from -11,062 to 38,970 → some invalid prices exist.
+
+
+
+
+
+
+
+
+df_cleaning = df.copy()
+
+print(f"Shape before removing duplicates: {df.shape}")
+df_cleaning = df_cleaning.drop_duplicates()
+print(f"Shape after removing duplicates: {df_cleaning.shape}")
+
+print(f"\nShape before removing missing values: {df_cleaning.shape}")
+df_cleaning = df_cleaning.dropna()
+print("\nMissing values per column after cleaning:")
+print(df_cleaning.isnull().sum())
+print(f"\nShape after removing missing values: {df_cleaning.shape}")
+
+# Convert InvoiceDate to datetime
+df_cleaning['InvoiceDate'] = pd.to_datetime(df_cleaning['InvoiceDate'], errors='coerce')
+
+# Drop missing CustomerIDs and convert to integer
+df_cleaning = df_cleaning.dropna(subset=['CustomerID'])
+df_cleaning['CustomerID'] = df_cleaning['CustomerID'].astype(int)
+
+print(df_cleaning.dtypes)
+
+
+♻️ drop_duplicates() → removes duplicate transactions (over 5,000 rows).
+
+🚫 dropna() → deletes rows with missing values (mainly CustomerID and Description).
+
+⏳ Convert InvoiceDate → ensures correct datetime format for later time-based analysis.
+
+🔢 Convert CustomerID → stored as an integer, making it consistent and usable for modeling.
+
