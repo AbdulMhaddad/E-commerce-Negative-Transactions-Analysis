@@ -1,0 +1,32 @@
+print(df.head())
+
+print("\n Info of the Data Set \n:")
+print(df.info())
+
+print("Description of the DataSet")
+print(df.describe())
+
+print("Columns of the DataSet")
+print(df.columns.tolist())
+
+print("Missing Values of the Dataset")
+print(df.isnull().sum())
+
+duplicates = df[df.duplicated()]
+print("Duplicate Rows in the dataset")
+print(duplicates)
+
+
+df.head() → Preview first 5 rows to get a feel for the data.
+
+df.info() → Check column types (numeric, categorical, datetime) and if there are null values.
+
+df.describe() → See summary statistics (mean, std, min, max) to detect anomalies/outliers.
+
+df.columns.tolist() → Quick look at all columns available.
+
+df.isnull().sum() → Identify missing values in each column.
+
+df.duplicated() → Check for duplicate rows that may distort analysis.
+
+Heading (### 📊 Step X)
