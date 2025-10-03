@@ -66,6 +66,63 @@ Monetary — Total monetary value of purchases
 
 These features were chosen to summarize customer behavior and feed into the XGBoost model
 
+## Exploratory Data Analysis (EDA)
+
+Descriptive statistics: mean, median, min/max, standard deviation for numeric columns.
+
+Distribution plots: histograms and boxplots to check for outliers and distribution shapes.
+
+Categorical analysis: counted occurrences of product categories, payment types, or regions involved in negative transactions.
+
+Identified patterns in negative transactions over time, product, or customer segments
+
+# 📊 Dataset Summary Statistics
+
+This Image provides a statistical overview of key columns in the dataset: `Quantity`, `UnitPrice`, and `CustomerID`.
+
+## 📈 Image
+<img width="1000" height="500" alt="Describtion od the dataset" src="https://github.com/user-attachments/assets/81ee46f4-7c7b-46c3-a67d-8db8a13b344f" />
+
+
+## 🔍 Key Highlights
+- **Quantity**
+  - Mean: 9.55
+  - Std Dev: 218.08
+  - Min/Max: -80,995 / 80,995
+- **UnitPrice**
+  - Mean: 4.61
+  - Std Dev: 96.76
+  - Min/Max: -11,062.06 / 38,970.00
+- **CustomerID**
+  - Mean: 15,287.69
+  - Std Dev: 1,713.60
+  - Min/Max: 12,346 / 18,287
+
+## ⚠️ Notable Observations
+- Negative values in `Quantity` and `UnitPrice` suggest potential data entry errors or special cases (e.g., returns or corrections).
+- High standard deviations indicate wide variability in transaction amounts and pricing.
+
+## 🧠 Interpretation
+This summary helps:
+- Identify outliers and anomalies
+- Guide data cleaning and preprocessing
+- Understand the distribution and central tendencies of key variables
+
+---
+
+Use this chart to support exploratory data analysis and model preparation.
+
+
+## Data Cleaning
+
+Handled missing values: checked columns with nulls (df.isnull().sum()) and decided whether to fill, drop, or leave them.
+
+Standardized column names (removed spaces, converted to lowercase).
+
+Removed duplicates to avoid double-counting transactions.
+
+Converted data types where necessary (e.g., order_date to datetime, amounts to numeric).
+
 
 # 📉 Negative Quantity Transactions Over Time
 
@@ -227,26 +284,43 @@ This visualization presents the performance metrics of a binary classification m
 
 
 ### [Insight Deep Dive](#insight-deep-dive)
-The detailed analysis revealed:
+Based on the insights from the model and feature analysis, the following actions are recommended:
 
-Feature Importance:
+1. Targeted Customer Monitoring
 
-Recency and Monetary were the top predictors.
+Flag customers who exhibit infrequent purchases with sudden high refunds for closer review.
 
-Frequency contributed moderately to model decisions.
+Implement real-time alerts for high-risk transactions to prevent potential losses.
 
-Patterns Observed:
+2. Regional and Product-Specific Controls
 
-Customers with infrequent purchases but sudden high refunds are flagged.
+Focus on countries or product categories that historically show higher negative transaction rates.
 
-Certain countries or product categories had more negative transactions, highlighting regional or product-specific trends.
+Consider stricter verification or additional checks for high-risk regions or product types.
 
-Model Behavior:
+3. Transaction Policies & Rules
 
-XGBoost handles class imbalance well, so rare negative transactions are detected reliably.
+Introduce spending/refund thresholds that trigger automated review workflows.
 
-False positives are minimal, meaning the model is conservative in flagging normal transactions.
+Monitor for unusual patterns that deviate from typical customer behavior (frequency, monetary value, recency).
 
+4. Operational & Fraud Prevention Measures
+
+Use the model predictions to prioritize investigation resources, reducing manual review load.
+
+Update risk scoring systems dynamically as new transaction data arrives.
+
+5. Continuous Model Improvement
+
+Retrain the XGBoost classifier periodically with new transaction data to capture evolving patterns.
+
+Incorporate additional features if available, such as payment method, device type, or order channel, to further enhance predictive power.
+
+6. Strategic Decision-Making
+
+Leverage insights to adjust return/refund policies, marketing incentives, or customer loyalty programs.
+
+Reduce financial leakage by focusing on the highest-risk segments identified by the model.
 
 
 
@@ -281,16 +355,18 @@ False positives are minimal, meaning the model is conservative in flagging norma
 
 Business Actions:
 
-Monitor flagged negative transactions in real-time dashboards.
+Real-time Monitoring: Continuously track flagged negative transactions on interactive dashboards to quickly respond to potential issues.
 
-Investigate top-flagged invoices for potential fraud, errors, or return patterns.
+Targeted Investigation: Review top-flagged invoices to identify fraud, processing errors, or unusual return patterns.
 
-Adjust return policies or promotional strategies based on insights.
+Policy Optimization: Adjust return/refund policies, promotional campaigns, or customer incentives based on observed trends to minimize financial risks.
 
 Next Steps:
 
-Deploy the model as a scheduled pipeline (daily/weekly predictions).
+Model Deployment: Automate the XGBoost classifier as a scheduled pipeline (daily or weekly) to proactively flag high-risk transactions.
 
-Integrate with BI tools like Power BI or Tableau for executive dashboards.
+BI Integration: Connect predictions with Power BI or Tableau dashboards for clear executive-level visibility and decision-making.
 
-Collect more labeled data over time to retrain and improve model accuracy.
+Continuous Learning: Collect and label new transaction data over time to retrain and enhance model accuracy, adapting to evolving customer behaviors.
+
+Impact: Implementing these recommendations will help the business reduce losses from negative transactions, optimize operational workflows, and maintain data-driven decision-making for transaction monitoring.
